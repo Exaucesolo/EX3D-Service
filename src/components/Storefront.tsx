@@ -2,7 +2,9 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { ArrowDown, ArrowUpRight, MoveUpRight } from "lucide-react";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
+import IntroOverlay from "@/components/IntroOverlay";
 import OrderDrawer from "@/components/OrderDrawer";
 import ServiceCard from "@/components/ServiceCard";
 import InquiryModal from "@/components/InquiryModal";
@@ -82,6 +84,7 @@ export default function Storefront() {
 
   return (
     <>
+      <IntroOverlay />
       <Navbar activeTab={activeTab} onTabChange={setActiveTab} onOrder={() => openOrder()} />
       <main id="accueil">
         {activeTab === "presentation" ? (
@@ -125,7 +128,7 @@ export default function Storefront() {
           </div>
         )}
       </main>
-      <footer className="footer"><div className="site-shell footer-inner"><a className="wordmark" href="#accueil"><span className="brand-mark" aria-hidden="true" /><span>EX3D SERVICE</span></a><span>Exaucé X3D · Studio créatif & activités</span><button className="footer-tab-link" type="button" onClick={() => setActiveTab(activeTab === "presentation" ? "services" : "presentation")}>{activeTab === "presentation" ? "Services & commande" : "Présentation & catalogue"} <MoveUpRight size={12} aria-hidden="true" /></button></div></footer>
+      <footer className="footer"><div className="site-shell footer-inner"><a className="wordmark" href="#accueil"><Image className="brand-logo" src="/Logo.png" alt="" width={24} height={24} /><span>EX3D SERVICE</span></a><span>Exaucé X3D · Studio créatif & activités</span><button className="footer-tab-link" type="button" onClick={() => setActiveTab(activeTab === "presentation" ? "services" : "presentation")}>{activeTab === "presentation" ? "Services & commande" : "Présentation & catalogue"} <MoveUpRight size={12} aria-hidden="true" /></button></div></footer>
       {drawerOpen && <OrderDrawer open={drawerOpen} initialService={selectedService} services={catalog} onClose={closeDrawer} />}
       {inquiryService && <InquiryModal service={inquiryService} index={catalog.findIndex((item) => item.id === inquiryService.id)} onClose={() => setInquiryService(null)} onOrder={openOrder} />}
     </>

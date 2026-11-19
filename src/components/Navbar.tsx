@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowDownRight } from "lucide-react";
+import Image from "next/image";
 
 type NavbarProps = {
   activeTab: "presentation" | "services";
@@ -12,7 +13,7 @@ export default function Navbar({ activeTab, onTabChange, onOrder }: NavbarProps)
   return (
     <header className="topbar">
       <div className="site-shell topbar-inner">
-        <a className="wordmark" href="#accueil" aria-label="EX3D Service, accueil"><span className="brand-mark" aria-hidden="true" /><span>EX3D SERVICE</span></a>
+        <a className="wordmark" href="#accueil" aria-label="EX3D Service, accueil"><Image className="brand-logo" src="/Logo.png" alt="" width={36} height={36} priority /><span>EX3D SERVICE</span></a>
         <nav className="primary-tabs" role="tablist" aria-label="Sections principales">
           <button role="tab" aria-selected={activeTab === "presentation"} className="primary-tab" type="button" onClick={() => onTabChange("presentation")}>Présentation & Catalogue</button>
           <button role="tab" aria-selected={activeTab === "services"} className="primary-tab" type="button" onClick={() => onTabChange("services")}>Services & Infos Commande</button>
